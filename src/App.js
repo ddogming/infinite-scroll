@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.scss";
+import GenreList from "./GenreList";
+import MovieScroll from "./MovieScroll";
 
-function App() {
+const App = () => {
+  const[activeTab, setActiveTab] = useState("popular");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>영화검색</h1>
+      <div className="tabs">
+      <button onClick={()=>{setActiveTab("popular")}}>인기 영화</button>
+      <button onClick={()=>{setActiveTab("genre")}}>장르별 영화</button>
+      </div>
+      <div className="contents">
+        {activeTab === "popular" && <MovieScroll/> }
+        {activeTab === "genre" && <GenreList/> }
+      </div>
     </div>
   );
-}
+};
 
 export default App;
